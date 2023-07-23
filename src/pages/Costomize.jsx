@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useSnapshot } from 'valtio'
 import config from '../config/config'
@@ -20,13 +20,35 @@ function Costomize() {
       logoShirt:true,
       stylishShirt:false
     })
+    const [display, setDisplay]= useState(false)
+    const excludedDivRef = useRef(null);
+
+    const handleClick = (event) => {
+      if (excludedDivRef.current && !excludedDivRef.current.contains(event.target)) {
+        // Handle the click event here for the body except the excluded divs
+        setDisplay(true)
+        console.log('Clicked outside the excluded divs!');
+      }
+    };
+  
+    useEffect(() => {
+      document.addEventListener('click', handleClick);
+      return () => {
+        document.removeEventListener('click', handleClick);
+      };
+    }, []);
+
 
 
     // show tab content depending on beign active or not
     const generatTabContent=()=>{
       switch(activeEditorTab){
         case "colorpicker":
-         return <ColorPicker/>
+         return <ColorPicker
+         display={display}
+         setDisplay={setDisplay}
+        
+         />
         case "filepicker":
           return <FilePicker
           file={file}
@@ -122,7 +144,7 @@ function Costomize() {
             className='absolute top-0 left-0 z-10'
             {...slideAnimation('left')}
             >
-               <div className='flex items-center min-h-screen'>
+               <div className='flex items-center min-h-screen'  ref={excludedDivRef} onClick={()=>setDisplay(false)}>
                 <div className='editortabs-container tabs'>
                     {EditorTabs.map(tab=>(<Tab key={tab.name}  tab={tab} handleClick={()=> setActiveEditorTab(tab.name)}/>))}
                     {generatTabContent()}
