@@ -6,8 +6,9 @@ import state from '../store'
 import { downloadCanvasToImage, reader } from '../config/helpers'
 import { EditorTabs, FilterTabs, DecalTypes } from '../config/constants'
 import { fadeAnimation, slideAnimation } from '../config/motion'
-import { AIpicker, ColorPicker, FilePicker, CustomButton,Tab } from '../components'
+import { AIpicker, ColorPicker, FilePicker, CustomButton,Tab,Edit } from '../components'
 import { download } from '../assets'
+import nike from "/nike.png"
 function Costomize() {
     const snap= useSnapshot(state)
 
@@ -34,12 +35,13 @@ function Costomize() {
           />
         case "aipicker":
           return <AIpicker
-           prompt={prompt}
-           setPrompt={setPrompt}
-           generatingImg={generatingImg}
-           handleSubmit={handleSubmit}
+          file={file}
+          setFile={setFile}
+          readFile={readFile}
           
           />
+         case "edit":
+          return <Edit /> 
         default:
           return null    
           
@@ -138,12 +140,15 @@ function Costomize() {
                
                />
             </motion.div>
+          
             
             <motion.div className='filtertabs-container' {...slideAnimation("up")}>
             {FilterTabs.map(tab=>(<Tab key={tab.name}  tab={tab} isFilterTab isActiveTab={activeFilterTab[tab.name]} handleClick={()=>handleActiveFilterTab(tab.name)}/>))}
             <button onClick={downloadCanvasToImage}>
               <img src={download} width={40} height={40} />
+
             </button>
+           
             </motion.div>
             </>
         )

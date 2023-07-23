@@ -6,8 +6,11 @@ const state= proxy({
     color:'#EFBD48',
     isLogoTexture:true,
     isFullTexture:false,
-    logoDecal:'./threejs.png',
-    fullDecal:'./threejs.png'
+    logoDecal:'./nike.png',
+    fullDecal:'./threejs.png',
+    logoScale:0.15,
+    moveX:false,
+    moveY:false
 })
 
 export default state

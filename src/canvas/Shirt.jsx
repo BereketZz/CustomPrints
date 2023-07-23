@@ -2,7 +2,7 @@ import React from 'react'
 import { easing } from 'maath'
 import { useSnapshot } from 'valtio'
 import { useFrame } from '@react-three/fiber'
-import { Decal, useGLTF, useTexture } from '@react-three/drei'
+import { Decal, OrbitControls, useGLTF, useTexture } from '@react-three/drei'
 import state from "../store"
 
 function Shirt() {
@@ -48,9 +48,10 @@ function Shirt() {
     const image = stringToImage(text);
     // End of function
 
-
+   var temp=[0,0.04,0.15]
   return (
    <group key={stateString}>
+   
     <mesh 
     castShadow
     geometry={nodes.T_Shirt_male.geometry}
@@ -73,9 +74,35 @@ function Shirt() {
         {
             snap.isLogoTexture && (
                 <Decal
-                position={[0,0.04,0.15]}
+                position={[snap.moveX,snap.moveY,0.15]}
                 rotation={[0,0,0]}
-                scale={0.15}
+                scale={`${snap.logoScale}`}
+                map={logoTexture}
+                
+              
+                
+                />
+
+         ) }
+             {
+            snap.moveX && (
+                <Decal
+                position={[0.09,0.08,0.15]}
+                rotation={[0,0,0]}
+                scale={`${snap.logoScale}`}
+                map={logoTexture}
+                
+               
+                
+                />
+
+         ) }
+           {
+            snap.moveY && (
+                <Decal
+                position={[-0.088,0.08,0.15]}
+                rotation={[0,0,0]}
+                scale={`${snap.logoScale}`}
                 map={logoTexture}
                 
                
