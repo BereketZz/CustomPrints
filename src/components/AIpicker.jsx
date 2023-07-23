@@ -1,7 +1,7 @@
 import React from 'react'
 import CustomButton from './CustomButton'
 import music from "/music.png"
-import react from "/react.png"
+
 import three from "/threejs.png"
 import cat from "/cat.png"
 import cross from "/cross.png"
