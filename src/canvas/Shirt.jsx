@@ -2,7 +2,7 @@ import React from 'react'
 import { easing } from 'maath'
 import { useSnapshot } from 'valtio'
 import { useFrame } from '@react-three/fiber'
-import { Decal, OrbitControls, useGLTF, useTexture } from '@react-three/drei'
+import { Decal, OrbitControls, useGLTF, useTexture, Text,RenderTexture } from '@react-three/drei'
 import state from "../store"
 
 function Shirt() {
@@ -49,16 +49,124 @@ function Shirt() {
     // End of function
 
    var temp=[0,0.04,0.15]
+   //
+   
   return (
-   <group key={stateString}>
+   <group  key={stateString} >
    
     <mesh 
+  
     castShadow
+
+    //geometry={nodes.Object_2.geometry}
     geometry={nodes.T_Shirt_male.geometry}
     material={materials.lambert1}
+   //material={materials['Material.001']}
+   //rotation={[-Math.PI /3, 0, 4]}
     material-roughness={1}
     dispose={null}>
       {
+        snap.textPosition=="top" &&
+        (
+          <Decal  position={[0,0.09,0.15]}
+          rotation={[0,0,0]}
+          scale={1}>
+            <meshStandardMaterial roughness={0.6} transparent polygonOffset polygonOffsetFactor={-10}>
+
+<RenderTexture attach="map" anisotropy={16}>
+ 
+<Text  fontSize={snap.textScale} color={snap.textColor}>{snap.text}</Text>
+</RenderTexture>
+</meshStandardMaterial>
+          </Decal>
+        )
+      }
+       {
+        snap.textPosition=="middle" &&
+        (
+          <Decal  position={[0,-0.011,0.15]}
+          rotation={[0,0,0]}
+          scale={1}>
+            <meshStandardMaterial roughness={0.6} transparent polygonOffset polygonOffsetFactor={-10}>
+
+<RenderTexture attach="map" anisotropy={16}>
+ 
+<Text  fontSize={snap.textScale} color={snap.textColor}>{snap.text}</Text>
+</RenderTexture>
+</meshStandardMaterial>
+          </Decal>
+        )
+      }
+       {
+        snap.textPosition=="bottom" &&
+        (
+          <Decal  position={[0,-0.099,0.15]}
+          rotation={[0,0,0]}
+          scale={1}>
+            <meshStandardMaterial roughness={0.6} transparent polygonOffset polygonOffsetFactor={-10}>
+
+<RenderTexture attach="map" anisotropy={16}>
+ 
+<Text  fontSize={snap.textScale} color={snap.textColor}>{snap.text}</Text>
+</RenderTexture>
+</meshStandardMaterial>
+          </Decal>
+        )
+      }
+      { snap.isLogoTexture && snap.logoPosition=="middle" &&
+        (
+          <Decal
+          position={[0,0.005,0.15]}
+               
+                scale={`${snap.logoScale}`}
+                 map={logoTexture}
+          />
+        )
+      }
+      { snap.isLogoTexture && snap.logoPosition=="left" &&
+        (
+          <Decal
+                position={[0.09,0.08,0.15]}
+                rotation={[0,0,0]}
+                scale={`${snap.logoScale}`}
+                map={logoTexture}
+                
+               
+                
+                />
+
+        )
+      }
+      {  snap.isLogoTexture &&snap.logoPosition=="top" &&
+        (
+          <Decal
+                position={[0,0.09,0.15]}
+                rotation={[0,0,0]}
+                scale={`${snap.logoScale}`}
+                map={logoTexture}
+                
+               
+                
+                />
+
+        )
+      }
+         { snap.isLogoTexture && snap.logoPosition=="bottom" &&
+        (
+          <Decal
+                position={[0,-0.099,0.15]}
+                rotation={[0,0,0]}
+                scale={`${snap.logoScale}`}
+                map={logoTexture}
+                
+               
+                
+                />
+
+        )
+      }
+           
+      {/* {
         snap.isFullTexture&& (
       <Decal
        position= {[0,0,0]}
@@ -72,18 +180,22 @@ function Shirt() {
         ) }
 
         {
-            snap.isLogoTexture && (
+            snap.isLogoTexture&&!snap.moveX&&!snap.moveY
+             && (
                 <Decal
-                position={[snap.moveX,snap.moveY,0.15]}
-                rotation={[0,0,0]}
-                scale={`${snap.logoScale}`}
-                map={logoTexture}
+                position={[0,0.05,0.15]}
+               // rotation={[1.4,0.0,0.0]}
+                // scale={[0.1, 0.25, 0.1]}
+                 scale={`${snap.logoScale}`}
+                 map={logoTexture}
                 
               
                 
-                />
+                /> 
+            
 
          ) }
+        
              {
             snap.moveX && (
                 <Decal
@@ -109,10 +221,20 @@ function Shirt() {
                 
                 />
 
-         ) }
+         ) } */}
+        
     </mesh>
    </group>
   )
 }
 
 export default Shirt
+{/* <meshStandardMaterial roughness={0.6} transparent polygonOffset polygonOffsetFactor={-10}>
+
+<RenderTexture attach="map" anisotropy={16}>
+ 
+<Text  fontSize={0.01} color="white">I LOve You</Text>
+</RenderTexture>
+</meshStandardMaterial>
+
+</Decal> */}

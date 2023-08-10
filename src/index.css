@@ -9,7 +9,7 @@ html {
   font-family: "Inter", sans-serif;
 }
 body{
-  background-image: linear-gradient( 110.1deg,  rgba(30,2,83,1) 44.2%, rgba(198,55,160,1) 138.2% );
+@apply bg-gray-900;
 
 }
 
@@ -21,6 +21,7 @@ body{
 
 .app {
   @apply relative w-full h-screen overflow-hidden;
+ 
 }
 
 .home {
@@ -32,7 +33,7 @@ body{
 }
 
 .head-text {
-  @apply xl:text-[10rem] text-[6rem] xl:leading-[11rem] leading-[7rem] font-black text-white;
+  @apply xl:text-[8rem] text-[3rem] xl:leading-[9rem] leading-[7rem] font-black text-white;
 }
 
 .download-btn {
@@ -48,7 +49,7 @@ body{
 }
 
 .aipicker-container {
-  @apply absolute left-full ml-3 glassmorphism p-3 w-[195px] h-[220px] rounded-md flex flex-col gap-4;
+  @apply absolute left-full ml-3 glassmorphism p-3 w-[195px] h-[190px] rounded-md flex flex-col gap-4;
 }
 
 .aipicker-textarea {
@@ -56,7 +57,7 @@ body{
 }
 
 .filepicker-container {
-  @apply absolute left-full ml-3 glassmorphism p-3 w-[195px] h-[220px] flex flex-col rounded-md;
+  @apply absolute left-full ml-3 glassmorphism p-3 w-[195px] h-[250px] flex flex-col rounded-md;
 }
 
 .filepicker-label {
@@ -68,7 +69,7 @@ body{
 }
 
 .glassmorphism {
-  background: rgba(255, 255, 255, 0.25);
+  background: #1f2937;
   box-shadow: 0 2px 30px 0 rgba(31, 38, 135, 0.07);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);

@@ -16,7 +16,9 @@
     "maath": "^0.7.0",
     "react": "^18.2.0",
     "react-color": "^2.19.3",
+    "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.2",
     "three": "^0.154.0",
     "valtio": "^1.10.7"
   },

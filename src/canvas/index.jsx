@@ -7,6 +7,12 @@ import Shirt from "./Shirt"
 
 function CanvasModel() {
   return (
+  //  <div style={{display:"flex", color:"white",justifyContent:"center", alignItems:"center", width:"100%", height:"100%"}}>
+  //    <h2>Hello world</h2>
+  //  </div>
+    
+    
+ 
   <Canvas
   shadows
   camera={{position:[0,0,0], fov:25}}
@@ -16,11 +22,12 @@ function CanvasModel() {
     <ambientLight intensity={0.5}/>
     <Environment preset='city' />
     <CameraRig>
-        <BackDrop/>
+        {/* <BackDrop/> */}
         <Center>
             <Shirt />
         </Center>
     </CameraRig>
+    
   </Canvas>
   )
 }

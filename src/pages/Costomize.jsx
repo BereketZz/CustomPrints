@@ -8,6 +8,8 @@ import { EditorTabs, FilterTabs, DecalTypes } from '../config/constants'
 import { fadeAnimation, slideAnimation } from '../config/motion'
 import { AIpicker, ColorPicker, FilePicker, CustomButton,Tab,Edit } from '../components'
 import { download } from '../assets'
+import Canvas from "../canvas/index"
+import { Link } from 'react-router-dom'
 import nike from "/nike.png"
 function Costomize() {
     const snap= useSnapshot(state)
@@ -52,18 +54,25 @@ function Costomize() {
         case "filepicker":
           return <FilePicker
           file={file}
+          display={display}
+         setDisplay={setDisplay}
           setFile={setFile}
           readFile={readFile}
           />
         case "aipicker":
           return <AIpicker
+          display={display}
+         setDisplay={setDisplay}
           file={file}
           setFile={setFile}
           readFile={readFile}
           
           />
          case "edit":
-          return <Edit /> 
+          return <Edit
+          display={display}
+         setDisplay={setDisplay}
+          /> 
         default:
           return null    
           
@@ -135,9 +144,9 @@ function Costomize() {
       })
     }
   return (
-    <AnimatePresence>
+    <AnimatePresence >
     {
-        !snap.intro && (
+        
             <>
             <motion.div
             key="custom"
@@ -157,15 +166,21 @@ function Costomize() {
                <CustomButton 
                type="filled"
                title="Go Back"
-               handleClick={()=>state.intro = true}
+               toward="/"
                customStyles={"w-fit px-4 py-2.5 font-bold text-sm"}
                
                />
             </motion.div>
-          
             
+            {/* <Canvas/> */}
             <motion.div className='filtertabs-container' {...slideAnimation("up")}>
+           
             {FilterTabs.map(tab=>(<Tab key={tab.name}  tab={tab} isFilterTab isActiveTab={activeFilterTab[tab.name]} handleClick={()=>handleActiveFilterTab(tab.name)}/>))}
+            <CustomButton
+                type="filled"
+                title="Order Product"
+                toward="/order"
+            />
             <button onClick={downloadCanvasToImage}>
               <img src={download} width={40} height={40} />
 
@@ -173,7 +188,7 @@ function Costomize() {
            
             </motion.div>
             </>
-        )
+        
     }
     </AnimatePresence>
   )

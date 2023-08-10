@@ -16,10 +16,10 @@ import bike from "/bike.png"
 import { useSnapshot } from 'valtio'
 import state from '../store'
 
-function AIpicker({file,setFile, readFile}) {
+function AIpicker({file,setFile, readFile,display, setDisplay}) {
   const snap= useSnapshot(state)
   return (
-    <div className='aipicker-container'>
+    <div className='aipicker-container' style={{display:display==false?"block":"none"}}>
      
      <div style={{display:"flex", justifyContent:"space-around", alignItems:"center"}}>
       <img src={music} width={50} height={50} onClick={()=>state.logoDecal=music} />
